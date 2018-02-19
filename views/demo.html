@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Demo Page</title>
+    <style>
+      input {
+        margin: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Demo Page</h1>
+    <p>Parse by URL string:</p>
+    <div style="text-align:right;width:590px;border:1px dashed #6495de;padding:16px;">
+      <form action="/api/phonenumbers/demo/URL" method="POST" enctype="text/plain">
+        <label for="URL">/api/phonenumbers/parse/text/</label>
+        <input id="URL" type="text" name="URL" style="width:375px" /><br />
+        <input type="submit" value="Submit URL" style="width:150px" />
+      </form>
+    </div>
+  </body>
+</html>

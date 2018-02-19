@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var PNF = require('google-libphonenumber').PhoneNumberFormat;
 var phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
+const path = require('path');
 const port = 3000;
 
 function cleanString(str){
@@ -56,6 +57,16 @@ app.post('/api/phonenumbers/parse/file', function(req,res){
 	
 	res.status(200).json(jsonPhoneNumber);
 	console.log(formatPhoneNumber);
+});
+
+app.get("/api/phonenumbers/demo", function(req, res) {
+	// send the html view with our form to the client
+	res.sendFile(path.join(__dirname, "/views/demo.html"));
+});
+
+app.post("/api/phonenumbers/demo/URL", bodyParser.text(), function(req, res) {
+	var urlString = req.body.trim().substring(4);
+	res.redirect("/api/phonenumbers/parse/text/" + urlString);
 });
 
 app.listen(port);
