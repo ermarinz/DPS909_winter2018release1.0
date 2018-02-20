@@ -18,5 +18,36 @@
         <input type="submit" value="Submit URL" style="width:150px" />
       </form>
     </div>
+    <p>Parse by text file:</p>
+    <div style="text-align:right;width:365px;border:1px dashed #6495de;padding:16px;">
+      <form method="POST" onsubmit="return validateUpload()" action="/api/phonenumbers/demo/textfile" enctype="multipart/form-data">
+        <label for="txtFile">Upload File:</label>
+        <input id="txtFile" type="file" name="txtFile" style="width:270px" /><br />
+        <input type="submit" value="Submit File" style="width:150px" />
+      </form>
+      <p id="validationText"></p>
+      <script>
+      function validateUpload() {
+        const validExtensions = [".txt"];
+        const input = document.getElementById("txtFile");
+        var fileName = input.value;
+        if (fileName.length > 0) {
+          var isValid = false;
+          for (var j = 0; j < validExtensions.length; j++) {
+            var curExt = validExtensions[j];
+            if (fileName.substr(fileName.length - curExt.length, curExt.length).toLowerCase() == curExt.toLowerCase()) {
+              isValid = true;
+              break;
+            }
+          }
+          if (!isValid) {
+            document.getElementById("validationText").innerHTML = "File: " + fileName + " is invalid. Allowed extensions are: " + validExtensions.join(", ");
+            return false;
+          }
+        }
+        return true;
+      }
+      </script>
+    </div>
   </body>
 </html>

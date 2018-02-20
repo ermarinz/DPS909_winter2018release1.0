@@ -7,11 +7,12 @@
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "dependencies": {
-    "express": "*",
     "body-parser": "*",
-    "google-libphonenumber": "*",
     "chai": "*",
-    "mocha": "*"
+    "express": "*",
+    "google-libphonenumber": "*",
+    "mocha": "*",
+    "multer": "^1.3.0"
   },
   "author": "Daniel Chang",
   "license": "ISC"

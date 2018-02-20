@@ -1,10 +1,22 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var multer = require('multer');
 var PNF = require('google-libphonenumber').PhoneNumberFormat;
 var phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
 const path = require('path');
 const port = 3000;
+
+const storage = multer.diskStorage({
+	destination: "./demo_uploads/",
+	filename: function (req, file, cb) {
+		// write the filename as the current date down to the millisecond
+		cb(null, Date.now() + path.extname(file.originalname));
+	}
+});
+
+// tell multer to use the diskStorage function for naming files instead of the default.
+const upload = multer({ storage: storage });
 
 function cleanString(str){
 	return str.replace(/%20/g, " ");
@@ -65,8 +77,16 @@ app.get("/api/phonenumbers/demo", function(req, res) {
 });
 
 app.post("/api/phonenumbers/demo/URL", bodyParser.text(), function(req, res) {
+	// parse by URL string example
 	var urlString = req.body.trim().substring(4);
 	res.redirect("/api/phonenumbers/parse/text/" + urlString);
+});
+
+app.post("/api/phonenumbers/demo/textfile", upload.single("txtFile"), function(req, res) {
+	const file = req.file;
+	// TODO: pass uploaded file to working textfile handler to 
+	// extract phone numbers, or just process them here.
+	res.status(200).send("File: " + file.filename + " uploaded to ./demo_uploads");
 });
 
 app.listen(port);
