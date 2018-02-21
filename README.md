@@ -47,3 +47,8 @@ This web api runs on port 3000 of your local host meaning that after you launch 
 Alternativly you could send a post request tothe same URL wih the form pair of {"phoneNumber":"905 111 2222"}. This should work with any post generater but the one I use is postman https://www.getpostman.com/ 
 
 This api currently only take 1 phonenumber per post and get request.
+
+## Demo
+To run the demo, start the the service, and then enter the following address into your web browser:
+
+``` http://localhost:3000/api/phonenumbers/demo ```
