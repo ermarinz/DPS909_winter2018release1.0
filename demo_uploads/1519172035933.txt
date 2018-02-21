@@ -1,0 +1,8 @@
+For testing purposes only! My phone book:
+Phone number 1: 4165555550
+Phone number 2: 416.555.5551
+Phone number 3: 416-555-5552
+Phone number 4: 416 555 5553
+Repeated number 4: 4165555553 5: 4165555554
+Phone number 6: (416) 555-5555Phone number 7: (416)555-5556
+The end.
